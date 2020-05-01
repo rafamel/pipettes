@@ -62,7 +62,7 @@
     "coveralls": "^3.0.7",
     "husky": "^4.2.3",
     "kpo": "^0.11.1",
-    "onchange": "^6.0.0",
+    "onchange": "^7.0.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {},
