@@ -15,7 +15,7 @@ function combineFn<In, Out>(
   return fns.reduce(
     (acc: UnaryFunction<In, Out[]>, fn) => {
       if (!fn) return acc;
-      return function(this: any, value: In): Out[] {
+      return function (this: any, value: In): Out[] {
         return acc.call(this, value).concat(fn.call(this, value));
       };
     },
@@ -29,7 +29,7 @@ function asyncCombineFn<In, Out>(
   return fns.reduce(
     (acc: UnaryFunction<In, Promise<Out[]>>, fn) => {
       if (!fn) return acc;
-      return async function(this: any, value: In): Promise<Out[]> {
+      return async function (this: any, value: In): Promise<Out[]> {
         return (await acc.call(this, value)).concat(await fn.call(this, value));
       };
     },

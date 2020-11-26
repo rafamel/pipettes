@@ -14,7 +14,7 @@ function pipeFn(...fns: Array<UnaryFunction<any, any> | undefined>): any {
   return fns.reduce(
     (acc: UnaryFunction<any, any>, fn) => {
       if (!fn) return acc;
-      return function(this: any, value: any) {
+      return function (this: any, value: any) {
         return fn.call(this, acc.call(this, value));
       };
     },
@@ -28,7 +28,7 @@ function asyncPipe(
   return fns.reduce(
     (acc: AsyncUnaryFunction<any, any>, fn) => {
       if (!fn) return acc;
-      return async function(this: any, value: any) {
+      return async function (this: any, value: any) {
         return fn.call(this, await acc.call(this, value));
       };
     },

@@ -1,10 +1,6 @@
-import { UnaryFunction, ResponseUnaryFunction } from '../types';
+import { ResponseUnaryFunction, UnaryFunction } from './types';
 
-export type MultiPipe<
-  T = any,
-  I extends T = T,
-  Into extends boolean = false
-> = <
+export type Pipe<T = any, I extends T = T> = <
   In extends I,
   T1 extends T = In,
   T2 extends T = T1,
@@ -57,7 +53,7 @@ export type MultiPipe<
   T49 extends T = T48,
   Out extends T = T49
 >(
-  f1: Into extends true ? In : UnaryFunction<In, T1>,
+  f1: UnaryFunction<In, T1>,
   f2?: UnaryFunction<T1, T2>,
   f3?: UnaryFunction<T2, T3>,
   f4?: UnaryFunction<T3, T4>,
@@ -107,4 +103,4 @@ export type MultiPipe<
   f48?: UnaryFunction<T47, T48>,
   f49?: UnaryFunction<T48, T49>,
   f50?: UnaryFunction<T49, Out>
-) => Into extends true ? Out : ResponseUnaryFunction<In, Out>;
+) => ResponseUnaryFunction<In, Out>;

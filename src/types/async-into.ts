@@ -1,10 +1,6 @@
-import { MaybeAsyncUnaryFunction, ResponseUnaryFunction } from '../types';
+import { MaybeAsyncUnaryFunction } from './types';
 
-export type AsyncMultiPipe<
-  T = any,
-  I extends T = T,
-  Into extends boolean = false
-> = <
+export type AsyncInto<T = any, I extends T = T> = <
   In extends I,
   T1 extends T = In,
   T2 extends T = T1,
@@ -58,7 +54,8 @@ export type AsyncMultiPipe<
   T50 extends T = T49,
   Out extends T = T50
 >(
-  f1: Into extends true ? In : MaybeAsyncUnaryFunction<In, T1>,
+  value: In,
+  f1?: MaybeAsyncUnaryFunction<In, T1>,
   f2?: MaybeAsyncUnaryFunction<T1, T2>,
   f3?: MaybeAsyncUnaryFunction<T2, T3>,
   f4?: MaybeAsyncUnaryFunction<T3, T4>,
@@ -108,4 +105,4 @@ export type AsyncMultiPipe<
   f48?: MaybeAsyncUnaryFunction<T47, T48>,
   f49?: MaybeAsyncUnaryFunction<T48, T49>,
   f50?: MaybeAsyncUnaryFunction<T49, Out>
-) => Into extends true ? Promise<Out> : ResponseUnaryFunction<In, Promise<Out>>;
+) => Promise<Out>;
