@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/rafamel/pipettes/compare/v0.1.0...v0.1.1) (2020-11-26)
+
+
+### Bug Fixes
+
+* **types:** fixes into types ([d5c266e](https://github.com/rafamel/pipettes/commit/d5c266e290644bb41e8a4bb2fdb255dc2b17ea4f))
+
+
+
 # 0.1.0 (2020-04-08)
 
 
