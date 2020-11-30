@@ -65,7 +65,9 @@
     "onchange": "^7.1.0",
     "typescript": "^3.9.7"
   },
-  "dependencies": {},
+  "dependencies": {
+    "type-core": "^0.3.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "kpo verify"

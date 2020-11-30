@@ -1,9 +1,7 @@
-export type UnaryFunction<I, O> = (value: I) => O;
+import { Intersection, NullaryFn, UnaryFn } from 'type-core';
 
-export type MaybeAsyncUnaryFunction<I, O> = (value: I) => Promise<O> | O;
-
-export type AsyncUnaryFunction<I, O> = (value: I) => Promise<O>;
-
-export type ResponseUnaryFunction<I, O> = UnaryFunction<I, O> &
-  (void extends I ? () => O : UnaryFunction<I, O>) &
-  (undefined extends I ? () => O : UnaryFunction<I, O>);
+export type PipeOutFn<In, Out> = Intersection<
+  UnaryFn<In, Out>,
+  void extends In ? NullaryFn<Out> : UnaryFn<In, Out>,
+  undefined extends In ? NullaryFn<Out> : UnaryFn<In, Out>
+>;

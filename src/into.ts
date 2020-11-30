@@ -1,9 +1,5 @@
-import {
-  UnaryFunction,
-  MaybeAsyncUnaryFunction,
-  Into,
-  AsyncInto
-} from './types';
+import { UnaryFn, MaybePromise } from 'type-core';
+import { Into, AsyncInto } from './types';
 import { pipe } from './pipe';
 
 export const into = Object.assign(intoFn as Into<any, any>, {
@@ -13,7 +9,7 @@ export const into = Object.assign(intoFn as Into<any, any>, {
 function intoFn(
   this: any,
   value: any,
-  ...fns: Array<UnaryFunction<any, any> | undefined>
+  ...fns: Array<UnaryFn<any, any> | undefined>
 ): any {
   return pipe.apply(this, fns as any)(value);
 }
@@ -21,7 +17,7 @@ function intoFn(
 function asyncIntoFn(
   this: any,
   value: any,
-  ...fns: Array<MaybeAsyncUnaryFunction<any, any> | undefined>
+  ...fns: Array<UnaryFn<any, MaybePromise<any>> | undefined>
 ): any {
   return pipe.async.apply(this, fns as any)(value);
 }
