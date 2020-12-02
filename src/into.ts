@@ -11,7 +11,7 @@ function intoFn(
   value: any,
   ...fns: Array<UnaryFn<any, any> | undefined>
 ): any {
-  return pipe.apply(this, fns as any)(value);
+  return fns.length ? pipe.apply(this, fns as any)(value) : value;
 }
 
 function asyncIntoFn(
@@ -19,5 +19,7 @@ function asyncIntoFn(
   value: any,
   ...fns: Array<UnaryFn<any, MaybePromise<any>> | undefined>
 ): any {
-  return pipe.async.apply(this, fns as any)(value);
+  return fns.length
+    ? pipe.async.apply(this, fns as any)(value)
+    : Promise.resolve(value);
 }
